@@ -1,0 +1,23 @@
+﻿using Domain.Entities.Enums;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Domain.Entities.Models
+{
+    public class Exam : BaseEntity
+    {
+        public string Title { get; set; } = string.Empty;
+        public TimeSpan Duration { get; set; }
+        public DateOnly Date {  get; set; }
+        public decimal TotalMarks {  get; set; }
+        public TermEnum Term {  get; set; }
+        public LevelEnum Level { get; set; }
+        public Guid CategoryId { get; set; }
+        public Category Category { get; set; } = new();
+        public ICollection<ExamQuestion> Questions { get; set; } = new List<ExamQuestion>();
+    }
+
+}
