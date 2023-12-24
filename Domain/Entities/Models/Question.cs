@@ -13,5 +13,6 @@ namespace Domain.Entities.Models
         public DifficultyEnum Difficulty { get; set; }
         public decimal Mark { get; set; }
         public ICollection<ExamQuestion> Exams { get; set; } = new List<ExamQuestion>();
+        public ICollection<Answer> Answers { get; set; } = new List<Answer>();
     }
 }
