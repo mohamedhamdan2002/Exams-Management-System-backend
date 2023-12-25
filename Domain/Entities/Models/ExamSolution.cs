@@ -10,7 +10,7 @@ namespace Domain.Entities.Models
     {
         public string FullName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
-        public decimal Degree { get; set; }
+        public decimal TotalMarks { get; set; }
         public ICollection<Answer> Answers { get; set; } = new List<Answer>();
     }
 }

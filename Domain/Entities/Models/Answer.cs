@@ -9,7 +9,7 @@ namespace Domain.Entities.Models
     public abstract class Answer : BaseEntity
     {
         public Guid QuestionId { get; set; }
-        public Question? Question { get; set; }
+        public Question Question { get; set; } = default(Question)!;
     }
 
     public class ChoiceAnswer : Answer
