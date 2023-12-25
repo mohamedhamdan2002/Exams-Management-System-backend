@@ -10,10 +10,13 @@ namespace Domain.Data
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<Exam> Exams { get; set; }
-        public DbSet<Question> Questions { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Exam> Exams { get; set; }
+        public DbSet<MultipleChocieQuestion> MultipleChocieQuestions { get; set; }
+        public DbSet<TrueAndFalseQuestion> TrueAndFalseQuestions { get; set; }
         public DbSet<ExamSolution> ExamSolutions { get; set; }
+        public DbSet<ChoiceAnswer> ChoiceAnswers { get; set; }
+        public DbSet<BooleanAnswer> BooleanAnswers { get; set; }
         public AppDbContext(DbContextOptions<AppDbContext> options) 
             : base(options) { }
 

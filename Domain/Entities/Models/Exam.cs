@@ -1,4 +1,4 @@
-﻿using Domain.Entities.Enums;
+﻿using Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +18,7 @@ namespace Domain.Entities.Models
         public Guid CategoryId { get; set; }
         public Category Category { get; set; } = new();
         public ICollection<ExamQuestion> Questions { get; set; } = new List<ExamQuestion>();
+        public ICollection<ExamSolution> Solutions { get; set; } = new List<ExamSolution>();
     }
 
 }
