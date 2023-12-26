@@ -14,16 +14,14 @@ namespace Api.Extensions
         public static void ConfigureEfCore(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContextPool<AppDbContext>(option =>
-                    option.UseSqlServer(configuration.GetConnectionString(AppConstans.Constr)));
+                    option.UseSqlServer(configuration.GetConnectionString(AppConstans.Constr), b => b.MigrationsAssembly("Api")));
         }
-
-        public static void ConfigureIServiceManager(this IServiceCollection services)
-            => services.AddScoped<IServiceManager, ServiceManager>();
 
         public static void ConfigureIRepositoryManager(this IServiceCollection services)
             => services.AddScoped<IRepositoryManager, RepositoryManager>();
              
-
+        public static void ConfigureIServiceManager(this IServiceCollection services)
+            => services.AddScoped<IServiceManager, ServiceManager>();
 
         public static void SetAllRequiredConfigurations(this IServiceCollection services, IConfiguration configuration)
         {

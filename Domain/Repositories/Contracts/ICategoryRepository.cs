@@ -9,8 +9,8 @@ namespace Domain.Repositories.Contracts
 {
     public interface ICategoryRepository
     {
-        Task<IEnumerable<Category>> GetCategoriesAsync(bool trackChanges);
-        Task<Category?> GetCategoryById(Guid id,  bool trackChanges);
+        Task<IEnumerable<Category>> GetCategoriesAsync(bool trackChanges = false);
+        Task<Category?> GetCategoryById(Guid id,  bool trackChanges = false);
         void CreateCategory(Category category);
         void DeleteCategory(Category category);
     }

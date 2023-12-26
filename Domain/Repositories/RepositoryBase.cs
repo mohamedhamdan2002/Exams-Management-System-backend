@@ -17,7 +17,7 @@ namespace Domain.Repositories
         public void Create(T entity) => _context.Add(entity);
 
         public void Delete(T entity) => _context.Remove(entity);
-        public IQueryable<T> GetAll(bool trackChanges)
+        public IQueryable<T> GetAll(bool trackChanges = false)
             => !trackChanges ? _context.Set<T>().AsNoTracking() : _context.Set<T>(); 
         public IQueryable<T> GetByCondition(Expression<Func<T, bool>> predicate, bool trackChanges = false, params string[] includeProperties)
         {

@@ -19,10 +19,10 @@ namespace Domain.Repositories
         public void DeleteCategory(Category category)
             => Delete(category);
 
-        public async Task<IEnumerable<Category>> GetCategoriesAsync(bool trackChanges)
+        public async Task<IEnumerable<Category>> GetCategoriesAsync(bool trackChanges = false)
             => await GetAll(trackChanges).OrderBy(x => x.Name).ToListAsync();
 
-        public async Task<Category?> GetCategoryById(Guid id, bool trackChanges)
+        public async Task<Category?> GetCategoryById(Guid id, bool trackChanges = false)
             => await GetByCondition(c => c.Id == id, trackChanges).SingleOrDefaultAsync();
 
     }

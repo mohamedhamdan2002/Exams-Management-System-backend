@@ -15,7 +15,7 @@ namespace Domain.Repositories
         public RepositoryManager(AppDbContext context)
         {
             _context = context;
-            _categoryRepository = new Lazy<ICategoryRepository>(() => new CategoryRepository(context));
+            _categoryRepository = new Lazy<ICategoryRepository>(() => new CategoryRepository(_context));
         }
         public ICategoryRepository CategoryRepository => _categoryRepository.Value;
 

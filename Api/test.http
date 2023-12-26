@@ -1,2 +1,27 @@
 # For more info on HTTP files go to https://aka.ms/vs/httpfile
-@host = https://localhost:7076/
+@host = https://localhost:7076/api
+@categoryId = b5283f7e-8b28-4bb5-ceac-08dc060b0996
+
+GET {{host}}/Categories
+
+###
+POST {{host}}/categories
+Content-Type: application/json
+
+{
+  "name": "Math",
+  "description" : "this for all exam of type Math"
+}
+
+###
+DELETE {{host}}/categories/{{categoryId}}
+
+###
+PUT {{host}}/categories/{{categoryId}}
+Content-Type: application/json
+
+{
+  "name": "Math",
+  "description" : "this for all exam of type Math upd"
+}
+###
