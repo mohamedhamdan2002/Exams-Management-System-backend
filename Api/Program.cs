@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.ConfigureEfCore(builder.Configuration);
+builder.Services.SetAllRequiredConfigurations(builder.Configuration);
 
 
 var app = builder.Build();
