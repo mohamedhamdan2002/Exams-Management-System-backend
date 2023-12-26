@@ -10,12 +10,12 @@ namespace Domain.Repositories
 {
     public class RepositoryManager : IRepositoryManager
     {
-        private readonly Lazy<CategoryRepository> _categoryRepository;
+        private readonly Lazy<ICategoryRepository> _categoryRepository;
         private readonly AppDbContext _context;
         public RepositoryManager(AppDbContext context)
         {
             _context = context;
-            _categoryRepository = new Lazy<CategoryRepository>(() => new CategoryRepository(context));
+            _categoryRepository = new Lazy<ICategoryRepository>(() => new CategoryRepository(context));
         }
         public ICategoryRepository CategoryRepository => _categoryRepository.Value;
 

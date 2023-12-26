@@ -1,10 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Entities.Models;
 
 namespace Application.DataTransferObjects.CategoryDtos
 {
-    public record CategoryDto(Guid Id, string Name, string? Description);
+    public record CategoryDto 
+    {
+        public Guid Id { get; init; }
+        public string? Name { get; init; }
+        public string? Description { get; init; }
+
+        public static CategoryDto ToCategoryDto(Category entity)
+        {
+            return new CategoryDto
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                Description = entity.Description,
+            };
+        }
+        public static IEnumerable<CategoryDto> ToListOfCategoriesDto(IEnumerable<Category> categories)
+        {
+            return categories.Select(category => ToCategoryDto(category));
+        }
+    }
 }
