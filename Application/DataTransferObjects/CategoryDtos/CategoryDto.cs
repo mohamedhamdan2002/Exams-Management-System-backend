@@ -6,7 +6,5 @@ using System.Threading.Tasks;
 
 namespace Application.DataTransferObjects.CategoryDtos
 {
-    internal class CategoryDto
-    {
-    }
+    public record CategoryDto(Guid Id, string Name, string? Description);
 }
