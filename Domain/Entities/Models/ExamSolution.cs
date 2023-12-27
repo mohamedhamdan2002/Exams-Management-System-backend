@@ -8,8 +8,8 @@ namespace Domain.Entities.Models
 {
     public class ExamSolution : BaseEntity
     {
-        public string FullName { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
+        public string FullName { get; set; } 
+        public string Email { get; set; } 
         public decimal TotalMarks { get; set; }
         public Guid ExamId { get; set; }
         public Exam Exam { get; set; } = new();
