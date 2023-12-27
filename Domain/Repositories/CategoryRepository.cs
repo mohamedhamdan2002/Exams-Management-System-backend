@@ -22,8 +22,8 @@ namespace Domain.Repositories
         public async Task<IEnumerable<Category>> GetCategoriesAsync(bool trackChanges = false)
             => await GetAll(trackChanges).OrderBy(x => x.Name).ToListAsync();
 
-        public async Task<Category?> GetCategoryById(Guid id, bool trackChanges = false)
-            => await GetByCondition(c => c.Id == id, trackChanges).SingleOrDefaultAsync();
+        public async Task<Category?> GetCategoryByIdAsync(Guid id, bool trackChanges = false, params string[] includeProperties)
+            => await GetByCondition(c => c.Id == id, trackChanges, includeProperties).SingleOrDefaultAsync();
 
     }
 }

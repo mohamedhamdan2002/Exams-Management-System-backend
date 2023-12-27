@@ -9,6 +9,7 @@ namespace Domain.Repositories.Contracts
     public interface IRepositoryManager
     {
         ICategoryRepository CategoryRepository { get; }
+        IExamRepository ExamRepository { get; }
         Task SaveAsync();
     }
 }
