@@ -14,7 +14,7 @@ namespace Api.Extensions
         public static void ConfigureEfCore(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContextPool<AppDbContext>(option =>
-                    option.UseSqlServer(configuration.GetConnectionString(AppConstans.Constr), b => b.MigrationsAssembly("Api")));
+                    option.UseSqlServer(configuration.GetConnectionString(AppConstans.Constr)));
         }
 
         public static void ConfigureIRepositoryManager(this IServiceCollection services)

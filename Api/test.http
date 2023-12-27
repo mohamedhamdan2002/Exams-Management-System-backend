@@ -1,6 +1,6 @@
 # For more info on HTTP files go to https://aka.ms/vs/httpfile
 @host = https://localhost:7076/api
-@categoryId = b5283f7e-8b28-4bb5-ceac-08dc060b0996
+@categoryId = 8e3551c9-eee2-41a3-6a1d-08dc06dedac7
 
 GET {{host}}/Categories
 
@@ -25,3 +25,31 @@ Content-Type: application/json
   "description" : "this for all exam of type Math upd"
 }
 ###
+GET {{host}}/categories/{{categoryId}}/exams
+###
+POST {{host}}/categories/{{categoryId}}/exams
+Content-Type: application/json
+
+{
+  "title": "Final Java Exam",
+  "duration": "02:30:00",
+  "date": "2020-09-10",
+  "totalMarks": "500.300",
+  "term": 1,
+  "level": 3
+}
+###
+@examId = 34fca573-2191-403d-eaa0-08dc06de8101
+PUT {{host}}/categories/{{categoryId}}/exams/{{examId}}
+Content-Type: application/json
+
+{
+  "title": "Final Java Exam",
+  "duration": "02:30:00",
+  "date": "2020-09-10",
+  "totalMarks": "150",
+  "term": 1,
+  "level": 3
+}
+###
+DELETE {{host}}/categories/{{categoryId}}/exams/2022b5ef-6f77-4def-1c49-08dc06df8e2e

@@ -1,4 +1,5 @@
 ﻿using Application.DataTransferObjects.CategoryDtos;
+using Application.DataTransferObjects.ExamDtos;
 using Application.Services.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +36,7 @@ namespace Api.Controllers
             if (!ModelState.IsValid)
                 return UnprocessableEntity(ModelState);
 
-            var categoryDto = await _services.CategoryService.CreateCategory(category);
+            var categoryDto = await _services.CategoryService.CreateCategoryAsync(category);
             return CreatedAtRoute("CategoryById", new { id = categoryDto.Id }, categoryDto);
         }
         [HttpPut("{id:guid}")]
@@ -45,14 +46,14 @@ namespace Api.Controllers
                 return BadRequest("CategoryForUpdateDto object is null");
             if (!ModelState.IsValid)
                 return UnprocessableEntity(ModelState);
-            await _services.CategoryService.UpdageCategory(id, category, trackChanges: true);
+            await _services.CategoryService.UpdageCategoryAsync(id, category, trackChanges: true);
             return NoContent();
 
         }
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> DeleteCategory(Guid id)
         {
-            await _services.CategoryService.DeleteCategory(id);
+            await _services.CategoryService.DeleteCategoryAsync(id);
             return NoContent();
 
         }
