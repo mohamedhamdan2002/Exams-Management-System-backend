@@ -18,7 +18,8 @@ namespace Domain.Data.Configurations
             builder.HasKey(x => x.Id);
 
             builder.Property(exam => exam.Title)
-                .HasColumnType("VARCHAR");
+                .HasColumnType("VARCHAR")
+                .HasMaxLength(500);
 
             builder.Property(exam => exam.Duration)
                 .HasColumnType("time");
@@ -27,11 +28,11 @@ namespace Domain.Data.Configurations
                 .HasColumnType("date")
                 .HasConversion(
                     v => new DateTime(v.Year, v.Month, v.Day).Date,
-                    v => DateOnly.Parse(v.ToString())
+                    v => DateOnly.FromDateTime(v)
                  );
 
             builder.Property(exam => exam.TotalMarks)
-                .HasPrecision(3, 3);
+                .HasPrecision(6, 3);
 
             builder.Property(exam => exam.Term)
                 .HasColumnType("VARCHAR")

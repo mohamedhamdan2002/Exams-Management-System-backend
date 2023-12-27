@@ -12,7 +12,8 @@ namespace Domain.Data.Configurations
             builder.HasKey(x => x.Id);
 
             builder.Property(question => question.Title)
-                .HasColumnType("VARCHAR");
+                .HasColumnType("VARCHAR")
+                .HasMaxLength(500);
 
             builder.Property(question => question.Difficulty)
                 .HasColumnType("VARCHAR")

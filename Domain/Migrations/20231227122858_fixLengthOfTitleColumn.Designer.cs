@@ -4,6 +4,7 @@ using Domain.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231227122858_fixLengthOfTitleColumn")]
+    partial class fixLengthOfTitleColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,8 +105,8 @@ namespace Domain.Migrations
                         .HasColumnType("VARCHAR");
 
                     b.Property<decimal>("TotalMarks")
-                        .HasPrecision(6, 3)
-                        .HasColumnType("decimal(6,3)");
+                        .HasPrecision(3, 3)
+                        .HasColumnType("decimal(3,3)");
 
                     b.HasKey("Id");
 
@@ -170,7 +173,6 @@ namespace Domain.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(500)
                         .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");
