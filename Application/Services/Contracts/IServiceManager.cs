@@ -9,6 +9,6 @@ namespace Application.Services.Contracts
     public interface IServiceManager 
     {
         ICategoryService CategoryService { get; }
-
+        IExamService ExamService { get; }
     }
 }

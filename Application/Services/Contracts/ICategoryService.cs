@@ -11,8 +11,8 @@ namespace Application.Services.Contracts
     {
         Task<IEnumerable<CategoryDto>> GetCategoriesAsync(bool trackChanges = false);
         Task<CategoryDto> GetCategoryByIdAsync(Guid id, bool trackChanges = false , params string[] includeProperites);
-        Task<CategoryDto> CreateCategory(CategoryForCreationDto categoryForCreationDto);
-        Task UpdageCategory(Guid id, CategoryForUpdateDto categoryForUpdateDto, bool trackChanges = false);
-        Task DeleteCategory(Guid id, bool trackChanges = false);
+        Task<CategoryDto> CreateCategoryAsync(CategoryForCreationDto categoryForCreationDto);
+        Task UpdageCategoryAsync(Guid id, CategoryForUpdateDto categoryForUpdateDto, bool trackChanges = false);
+        Task DeleteCategoryAsync(Guid id, bool trackChanges = false);
     }
 }
