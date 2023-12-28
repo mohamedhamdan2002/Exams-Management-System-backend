@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities.Models
 {
-    public class MultipleChocieQuestion : Question
+    public class MultipleChoiceQuestion : Question
     {
         public string OptionA {  get; set; } 
         public string OptionB { get; set; } 
