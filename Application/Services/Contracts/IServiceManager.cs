@@ -10,5 +10,8 @@ namespace Application.Services.Contracts
     {
         ICategoryService CategoryService { get; }
         IExamService ExamService { get; }
+        IQuestionService QuestionService { get; }
+        IMultipleChoiceQuestionService MultipleChoiceQuestionService { get; }
+        ITrueAndFalseQuestionService TrueAndFalseQuestionService { get; }
     }
 }

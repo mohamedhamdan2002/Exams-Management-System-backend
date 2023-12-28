@@ -15,9 +15,9 @@ namespace Domain.Repositories
 
         public QuestionRepository(AppDbContext context) 
             : base(context) { }
-        public void CreateQuestionAsync(Question question)
+        public void CreateQuestion(Question question)
             => Create(question);
-        public void DeleteQuestionAsync(Question question)
+        public void DeleteQuestion(Question question)
             => Delete(question);
         public async Task<Question?> GetQuestionByIdAsync(Guid id, bool tarckChanges = false, params string[] includeProperties)
             => await GetByCondition(question => question.Id == id, tarckChanges, includeProperties).SingleOrDefaultAsync();

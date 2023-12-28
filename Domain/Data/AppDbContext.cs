@@ -12,7 +12,7 @@ namespace Domain.Data
     {
         public DbSet<Category> Categories { get; set; }
         public DbSet<Exam> Exams { get; set; }
-        public DbSet<MultipleChocieQuestion> MultipleChocieQuestions { get; set; }
+        public DbSet<MultipleChoiceQuestion> MultipleChocieQuestions { get; set; }
         public DbSet<TrueAndFalseQuestion> TrueAndFalseQuestions { get; set; }
         public DbSet<ExamSolution> ExamSolutions { get; set; }
         public DbSet<ChoiceAnswer> ChoiceAnswers { get; set; }

@@ -53,3 +53,34 @@ Content-Type: application/json
 }
 ###
 DELETE {{host}}/categories/{{categoryId}}/exams/2022b5ef-6f77-4def-1c49-08dc06df8e2e
+###
+GET {{host}}/multiplechoicequestions/
+###
+POST {{host}}/multiplechoicequestions/
+Content-Type: application/json
+
+{
+  "title": "what is the first letter in mohamed?",
+  "difficulty": 2,
+  "mark": 10,
+  "optionA": "m",
+  "optionB": "M",
+  "optionC": "Cs",
+  "optionD": "sh",
+  "correctChoice": "A"
+}
+###
+@MquestionId = 254bdfe8-49fc-489f-4558-08dc07a1c3e4
+PUT {{host}}/multiplechoicequestions/{{MquestionId}}
+Content-Type: application/json
+
+{
+  "title": "what is the first letter in mohamed?",
+  "difficulty": 2,
+  "mark": 10,
+  "optionA": "m",
+  "optionB": "M",
+  "optionC": "Cs",
+  "optionD": "sh",
+  "correctChoice": "A"
+}

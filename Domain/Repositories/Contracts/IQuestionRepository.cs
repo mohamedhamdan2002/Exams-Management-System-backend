@@ -13,8 +13,8 @@ namespace Domain.Repositories.Contracts
         Task<Question?> GetQuestionByIdAsync(Guid id,
             bool tarckChanges = false,
             params string[] includeProperties);
-        void CreateQuestionAsync(Question question);
+        void CreateQuestion(Question question);
 
-        void DeleteQuestionAsync(Question question);
+        void DeleteQuestion(Question question);
     }
 }
