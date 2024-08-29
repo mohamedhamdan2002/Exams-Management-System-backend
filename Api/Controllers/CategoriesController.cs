@@ -1,13 +1,16 @@
 ﻿using Application.DataTransferObjects.CategoryDtos;
 using Application.DataTransferObjects.ExamDtos;
 using Application.Services.Contracts;
-using Microsoft.AspNetCore.Http;
+using Application.Utilities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CategoriesController : ControllerBase
     {
         private readonly IServiceManager _services;
@@ -18,13 +21,17 @@ namespace Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCategories()
         {
-            return Ok(await _services.CategoryService.GetCategoriesAsync());
+            var data = await _services.CategoryService.GetCategoriesAsync();
+            Response<IEnumerable<CategoryDto>> response = data.ToList();
+
+            return Ok(response);
         }
 
         [HttpGet("{id:guid}", Name = "CategoryById")]
         public async Task<IActionResult> GetCategoryAsync(Guid id) 
         {
-            return Ok(await _services.CategoryService.GetCategoryByIdAsync(id));
+            Response<CategoryDto> response = await _services.CategoryService.GetCategoryByIdAsync(id);
+            return Ok(response);
         }
         [HttpPost]
         public async Task<IActionResult> CreateCateogry([FromBody] CategoryForCreationDto category)
@@ -46,7 +53,7 @@ namespace Api.Controllers
                 return BadRequest("CategoryForUpdateDto object is null");
             if (!ModelState.IsValid)
                 return UnprocessableEntity(ModelState);
-            await _services.CategoryService.UpdageCategoryAsync(id, category, trackChanges: true);
+            await _services.CategoryService.UpdateCategoryAsync(id, category, trackChanges: true);
             return NoContent();
 
         }
@@ -55,7 +62,6 @@ namespace Api.Controllers
         {
             await _services.CategoryService.DeleteCategoryAsync(id);
             return NoContent();
-
         }
     }
 }

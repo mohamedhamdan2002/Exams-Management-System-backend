@@ -14,4 +14,20 @@ namespace Domain.Data.Configurations
                 .HasForeignKey(x => x.QuestionId);
         }
     }
+
+    internal class BooleanAnswerConfiguration : IEntityTypeConfiguration<BooleanAnswer>
+    {
+        public void Configure(EntityTypeBuilder<BooleanAnswer> builder)
+        {
+
+        }
+    }
+
+    internal class ChoiceAnswerConfiguration : IEntityTypeConfiguration<ChoiceAnswer>
+    {
+        public void Configure(EntityTypeBuilder<ChoiceAnswer> builder)
+        {
+
+        }
+    }
 }

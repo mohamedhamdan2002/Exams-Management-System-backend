@@ -26,4 +26,19 @@ namespace Domain.Data.Configurations
             builder.UseTpcMappingStrategy();
         }
     }
+
+    internal class TrueAndFalseQuestionConfiguration : IEntityTypeConfiguration<TrueAndFalseQuestion>
+    {
+        public void Configure(EntityTypeBuilder<TrueAndFalseQuestion> builder)
+        {
+            builder.ToTable("TrueAndFalseQuestions");
+        }
+    }
+    internal class MultipleChoiceQuestionConfiguration : IEntityTypeConfiguration<MultipleChoiceQuestion>
+    {
+        public void Configure(EntityTypeBuilder<MultipleChoiceQuestion> builder)
+        {
+            builder.ToTable("MultipleChoiceQuestions");
+        }
+    }
 }

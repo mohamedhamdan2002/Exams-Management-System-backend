@@ -1,0 +1,39 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+# @host = https://localhost:7076/api
+@host = http://localhost:5123/api
+@categoryId = bd51ef48-9602-43ee-e080-08dc18248ccb
+@examId = 1d296048-871c-410b-cb94-08dc1b2ad555
+
+GET {{host}}/categories/{{categoryId}}/exams
+###
+POST {{host}}/categories/{{categoryId}}/exams
+Content-Type: application/json
+
+{
+  "title": "Final Java Exam",
+  "duration": "02:30:00",
+  "date": "2020-09-10",
+  "totalMarks": "500.300",
+  "term": 1,
+  "level": 3
+}
+###
+PUT {{host}}/categories/{{categoryId}}/exams/{{examId}}
+Content-Type: application/json
+
+{
+  "title": "Final Java Exam",
+  "duration": "02:30:00",
+  "date": "2020-09-10",
+  "totalMarks": "150",
+  "term": 1,
+  "level": 3
+}
+###
+GET {{host}}/categories/{{categoryId}}/exams/{{examId}}
+###
+DELETE {{host}}/categories/{{categoryId}}/exams/{{examId}}
+
+###
+GET {{host}}/exams/

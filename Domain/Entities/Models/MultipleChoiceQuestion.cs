@@ -8,11 +8,11 @@ namespace Domain.Entities.Models
 {
     public class MultipleChoiceQuestion : Question
     {
-        public string OptionA {  get; set; } 
-        public string OptionB { get; set; } 
-        public string OptionC { get; set; } 
-        public string OptionD { get; set; } 
+        public string OptionA {  get; set; }
+        public string OptionB { get; set; }
+        public string OptionC { get; set; }
+        public string OptionD { get; set; }
 
-        public char CorrectChoice { get; set; }
+        public string CorrectChoice { get; set; }
     }
 }

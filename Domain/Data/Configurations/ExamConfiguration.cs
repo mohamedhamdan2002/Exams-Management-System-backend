@@ -2,12 +2,6 @@
 using Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Data.Configurations
 {
@@ -46,8 +40,8 @@ namespace Domain.Data.Configurations
                 .HasColumnType("VARCHAR")
                 .HasMaxLength(10)
                 .HasConversion(
-                    x => x.ToString(), 
-                    x => (LevelEnum)Enum.Parse(typeof(LevelEnum), x) 
+                    x => x.ToString(),
+                    x => (LevelEnum)Enum.Parse(typeof(LevelEnum), x)
                 );
 
             builder.HasOne(exam => exam.Category)

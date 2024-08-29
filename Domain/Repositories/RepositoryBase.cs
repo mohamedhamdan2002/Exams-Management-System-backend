@@ -12,9 +12,9 @@ namespace Domain.Repositories
 {
     internal abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
     { 
-        private readonly AppDbContext _context;
+        protected readonly AppDbContext _context;
         public RepositoryBase(AppDbContext context) => _context = context;
-        public void Create(T entity) => _context.Add(entity);
+        public void Create(T entity) => _context.Set<T>().Add(entity);
 
         public void Delete(T entity) => _context.Remove(entity);
         public IQueryable<T> GetAll(bool trackChanges = false)
@@ -23,14 +23,18 @@ namespace Domain.Repositories
         {
             IQueryable<T> query = _context.Set<T>().Where(predicate);
 
-            if (!trackChanges)
-                query.AsNoTracking();
-
             if (includeProperties.Any())
                 foreach (var property in includeProperties)
-                    query.Include(property);
+                    query = query.Include(property);
+
+            if (!trackChanges)
+                query = query.AsNoTracking();
+
 
             return query;
         }
+
+        public async Task<bool> CheckIfItExistByConditionAsync(Expression<Func<T, bool>> expression)
+            => await _context.Set<T>().AnyAsync(expression);
     }
 }

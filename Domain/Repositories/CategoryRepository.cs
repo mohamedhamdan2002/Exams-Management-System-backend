@@ -2,11 +2,6 @@
 using Domain.Entities.Models;
 using Domain.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Repositories
 {
@@ -20,10 +15,16 @@ namespace Domain.Repositories
             => Delete(category);
 
         public async Task<IEnumerable<Category>> GetCategoriesAsync(bool trackChanges = false)
-            => await GetAll(trackChanges).OrderBy(x => x.Name).ToListAsync();
+            => await GetAll(trackChanges)
+                .OrderBy(x => x.Name)
+                .ToListAsync();
 
         public async Task<Category?> GetCategoryByIdAsync(Guid id, bool trackChanges = false, params string[] includeProperties)
-            => await GetByCondition(c => c.Id == id, trackChanges, includeProperties).SingleOrDefaultAsync();
+            => await GetByCondition(
+                    c => c.Id == id,
+                    trackChanges,
+                    includeProperties
+                ).SingleOrDefaultAsync();
 
     }
 }

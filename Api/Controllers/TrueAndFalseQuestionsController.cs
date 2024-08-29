@@ -1,13 +1,17 @@
 ﻿
+
+// Ignore Spelling: Api
+
 using Application.DataTransferObjects.QuestionDtos;
 using Application.Services.Contracts;
-using Domain.Entities.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    //[ApiController]
+    [Authorize]
     public class TrueAndFalseQuestionsController : ControllerBase
     {
         private readonly IServiceManager _services;
@@ -54,7 +58,7 @@ namespace Api.Controllers
             if (!ModelState.IsValid)
                 return UnprocessableEntity(ModelState);
 
-            await _services.TrueAndFalseQuestionService.UpdateTrueAndFalseQuestionAsync(id, question);
+            await _services.TrueAndFalseQuestionService.UpdateTrueAndFalseQuestionAsync(id, question, trackChanges: true);
             return NoContent();
         }
 

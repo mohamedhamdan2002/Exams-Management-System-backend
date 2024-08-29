@@ -1,0 +1,33 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+# @host = https://localhost:7076/api
+@host = http://localhost:5123/api
+@categoryId = bd51ef48-9602-43ee-e080-08dc18248ccb
+@tfQuestionId = 52fac07c-a5a5-4761-1901-08dc27b271b2
+GET {{host}}/trueAndfalsequestions/
+###
+GET {{host}}/trueAndfalsequestions/{{tfQuestionId}}
+###
+POST {{host}}/trueAndfalsequestions/
+Content-Type: application/json
+
+{
+  "title": "is egypt is a great country?",
+  "difficulty": 2,
+  "mark": 10,
+  "correctAnswer": true
+}
+
+###
+PUT {{host}}/trueAndfalsequestions/{{tfQuestionId}}
+Content-Type: application/json
+
+{
+  "title":"this question created by client for test ?",
+  "difficulty":1,
+  "mark":150,
+  "correctAnswer":"true"
+}
+
+###
+DELETE {{host}}/trueAndfalsequestions/{{tfQuestionId}}

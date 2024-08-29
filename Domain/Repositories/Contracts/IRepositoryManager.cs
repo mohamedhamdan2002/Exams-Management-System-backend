@@ -10,9 +10,10 @@ namespace Domain.Repositories.Contracts
     {
         ICategoryRepository CategoryRepository { get; }
         IExamRepository ExamRepository { get; }
-        IQuestionRepository QuestionRepository { get; }
         IMultipleChoiceQuestionRepository MultipleChoiceQuestionRepository { get; }
         ITrueAndFalseQuestionRepository TrueAndFalseQuestionRepository { get; }
+        IExamQuestionRepository ExamQuestionRepository { get; }
+        IExamSolutionRepository ExamSolutionRepository { get; }
         Task SaveAsync();
     }
 }

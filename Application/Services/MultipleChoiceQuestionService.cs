@@ -2,11 +2,6 @@
 using Application.Services.Contracts;
 using Domain.Entities.Models;
 using Domain.Repositories.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services
 {
@@ -22,21 +17,21 @@ namespace Application.Services
         public async Task<QuestionDto> CreateMultipleChoiceQuestionAsync(MultipleChoiceQuestionForCreationDto questionForCreationDto)
         {
             MultipleChoiceQuestion newQuestion = MultipleChoiceQuestionForCreationDto.ToMultipleChoiceQuestion(questionForCreationDto);
-            _repository.MultipleChoiceQuestionRepository.CreateMultipleChoiceQuestion(newQuestion);
+            _repository.MultipleChoiceQuestionRepository.Create(newQuestion);
             await _repository.SaveAsync();
             return MultipleChoiceQuestionDto.ToMultipleChoiceQuestionDto(newQuestion);
         }
 
         public async Task DeleteMultipleChoiceQuestionAsync(Guid id, bool trackChanges = false)
         {
-            MultipleChoiceQuestion question = await getMultipleChoiceQuestionAndCheckIfItExistAsync(id, trackChanges);
-            _repository.MultipleChoiceQuestionRepository.DeleteMultipleChoiceQuestion(question);
+            MultipleChoiceQuestion question = await GetMultipleChoiceQuestionAndCheckIfItExistAsync(id, trackChanges);
+            _repository.MultipleChoiceQuestionRepository.Delete(question);
             await _repository.SaveAsync();
         }
 
         public async Task<MultipleChoiceQuestionDto> GetMultipleChoiceQuestionByIdAsync(Guid id, bool trackChanges = false, params string[] includeProperites)
         {
-            MultipleChoiceQuestion question = await getMultipleChoiceQuestionAndCheckIfItExistAsync(id, trackChanges);
+            MultipleChoiceQuestion question = await GetMultipleChoiceQuestionAndCheckIfItExistAsync(id, trackChanges);
             return MultipleChoiceQuestionDto.ToMultipleChoiceQuestionDto(question);
         }
 
@@ -48,12 +43,12 @@ namespace Application.Services
 
         public async Task UpdateMultipleChoiceQuestionAsync(Guid id, MultipleChoiceQuestionForUpdateDto questionForUpdateDto, bool trackChanges = false)
         {
-            MultipleChoiceQuestion question = await getMultipleChoiceQuestionAndCheckIfItExistAsync(id, trackChanges);
+            MultipleChoiceQuestion question = await GetMultipleChoiceQuestionAndCheckIfItExistAsync(id, trackChanges);
             MultipleChoiceQuestionForUpdateDto.UpdateMultipleChoiceQuestion(questionForUpdateDto, question);
             await _repository.SaveAsync();
         }
 
-        private async Task<MultipleChoiceQuestion> getMultipleChoiceQuestionAndCheckIfItExistAsync(Guid id, bool trackChanges)
+        private async Task<MultipleChoiceQuestion> GetMultipleChoiceQuestionAndCheckIfItExistAsync(Guid id, bool trackChanges)
         {
             MultipleChoiceQuestion question = await _repository.MultipleChoiceQuestionRepository.GetMultipleChoiceQuestionByIdAsync(id, trackChanges) ?? throw new Exception();
             return question;

@@ -5,11 +5,11 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C5B04396-6FB3-4D40-A6DA-6F85CD58BD29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{D79C26B6-B5D5-4E1C-BC8D-83D3AFDEDE26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{D79C26B6-B5D5-4E1C-BC8D-83D3AFDEDE26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{CE03AD20-2F02-431B-9A2B-7EE6059902D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{CE03AD20-2F02-431B-9A2B-7EE6059902D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{B2E54348-A1C8-4ED3-874D-E3B9ABF8C965}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{B2E54348-A1C8-4ED3-874D-E3B9ABF8C965}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

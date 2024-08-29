@@ -1,0 +1,24 @@
+@host = http://localhost:5123/api
+POST {{host}}/auth/register
+Content-Type: application/json
+
+{
+  "firstname": "mohamed",
+  "lastname": "hemdan2",
+  "email": "mohamedh222@gmail.com",
+  "password": "Mohamed123.",
+  "phonenumber": "01232342233",
+  "nationalid": "211423423423"
+}
+
+###
+POST {{host}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@gmail.com",
+  "password": "Admin123."
+}
+
+###
+GET {{host}}/auth/users

@@ -2,14 +2,13 @@
 
 namespace Domain.Repositories.Contracts
 {
-    public interface IMultipleChoiceQuestionRepository
+    public interface IMultipleChoiceQuestionRepository : IRepositoryBase<MultipleChoiceQuestion>
     {
         Task<IEnumerable<MultipleChoiceQuestion>> GetMultipleChoiceQuestionsAsync(bool trackChanges = false);
         Task<MultipleChoiceQuestion?> GetMultipleChoiceQuestionByIdAsync(Guid id,
             bool tarckChanges = false,
             params string[] includeProperties);
-        void CreateMultipleChoiceQuestion(MultipleChoiceQuestion question);
+        Task<Dictionary<Guid, MultipleChoiceQuestion>> GetMCQuestionsForExam(Guid examId);
 
-        void DeleteMultipleChoiceQuestion(MultipleChoiceQuestion question);
     }
 }

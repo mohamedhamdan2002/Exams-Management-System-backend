@@ -1,12 +1,14 @@
 ﻿
 using Application.DataTransferObjects.QuestionDtos;
 using Application.Services.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class MultipleChoiceQuestionsController : ControllerBase
     {
         private readonly IServiceManager _services;
@@ -52,14 +54,14 @@ namespace Api.Controllers
             if (!ModelState.IsValid)
                 return UnprocessableEntity(ModelState);
 
-            await _services.MultipleChoiceQuestionService.UpdateMultipleChoiceQuestionAsync(id, question);
+            await _services.MultipleChoiceQuestionService.UpdateMultipleChoiceQuestionAsync(id, question, trackChanges: true);
             return NoContent();
         }
 
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> DeleteMultipleChoiceQuestion(Guid id)
         {
-             await _services.MultipleChoiceQuestionService.DeleteMultipleChoiceQuestionAsync(id);
+            await _services.MultipleChoiceQuestionService.DeleteMultipleChoiceQuestionAsync(id);
             return NoContent();
         }
     }

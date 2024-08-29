@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Domain.Entities.Models
+﻿namespace Domain.Entities.Models
 {
     public class ExamSolution : BaseEntity
     {
-        public string FullName { get; set; } 
-        public string Email { get; set; } 
+        public string UserId { get; set; } = null!;
+        public User User { get; set; } = null!;
         public decimal TotalMarks { get; set; }
         public Guid ExamId { get; set; }
-        public Exam Exam { get; set; } = new();
+        public Exam Exam { get; set; } = null!;
         public ICollection<Answer> Answers { get; set; } = new List<Answer>();
     }
 }

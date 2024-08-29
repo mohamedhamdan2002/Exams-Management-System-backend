@@ -1,0 +1,23 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+@host = http://localhost:5123/api
+@userId = 1c06a0ad-7ff3-4fcb-9207-2a2791cf5daa
+@examId = 1d296048-871c-410b-cb94-08dc1b2ad555
+POST {{host}}/exam-solutions/?userId={{userId}}&&examId={{examId}}
+Content-Type: application/json
+
+{
+  "answers": [
+    {
+      "questionId": "14ae6adb-d37e-49c9-770d-08dc216fc9ea",
+      "type": "Choice",
+      "choice": "a"
+    },
+    {
+      "questionId": "52fac07c-a5a5-4761-1901-08dc27b271b2",
+      "type": "Boolean",
+      "value": false
+    }
+  ]
+}
+###
+GET {{host}}/exam-solutions/?userId={{userId}}&&examId={{examId}}

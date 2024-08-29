@@ -2,11 +2,6 @@
 using Application.Services.Contracts;
 using Domain.Entities.Models;
 using Domain.Repositories.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services
 {
@@ -22,21 +17,21 @@ namespace Application.Services
         public async Task<QuestionDto> CreateTrueAndFalseQuestionAsync(TrueAndFalseQuestionForCreationDto questionForCreationDto)
         {
             TrueAndFalseQuestion newQuestion = TrueAndFalseQuestionForCreationDto.ToTrueAndFalseQuestion(questionForCreationDto);
-            _repository.TrueAndFalseQuestionRepository.CreateTrueAndFalseQuestion(newQuestion);
+            _repository.TrueAndFalseQuestionRepository.Create(newQuestion);
             await _repository.SaveAsync();
             return TrueAndFalseQuestionDto.ToTrueAndFalseQuestionDto(newQuestion);
         }
-    
+
         public async Task DeleteTrueAndFalseQuestionAsync(Guid id, bool trackChanges = false)
         {
-            TrueAndFalseQuestion question = await getTrueAndFalseQuestionAndCheckIfItExistAsync(id, trackChanges);
-            _repository.TrueAndFalseQuestionRepository.DeleteTrueAndFalseQuestion(question);
+            TrueAndFalseQuestion question = await GetTrueAndFalseQuestionAndCheckIfItExistAsync(id);
+            _repository.TrueAndFalseQuestionRepository.Delete(question);
             await _repository.SaveAsync();
         }
 
         public async Task<TrueAndFalseQuestionDto> GetTrueAndFalseQuestionByIdAsync(Guid id, bool trackChanges = false, params string[] includeProperites)
         {
-            TrueAndFalseQuestion question = await getTrueAndFalseQuestionAndCheckIfItExistAsync(id, trackChanges);
+            TrueAndFalseQuestion question = await GetTrueAndFalseQuestionAndCheckIfItExistAsync(id, trackChanges);
             return TrueAndFalseQuestionDto.ToTrueAndFalseQuestionDto(question);
         }
 
@@ -48,14 +43,20 @@ namespace Application.Services
 
         public async Task UpdateTrueAndFalseQuestionAsync(Guid id, TrueAndFalseQuestionForUpdateDto questionForUpdateDto, bool trackChanges = false)
         {
-            TrueAndFalseQuestion question = await getTrueAndFalseQuestionAndCheckIfItExistAsync(id, trackChanges);
+            TrueAndFalseQuestion question = await GetTrueAndFalseQuestionAndCheckIfItExistAsync(id, trackChanges);
             TrueAndFalseQuestionForUpdateDto.UpdateTrueAndFalseQuestion(questionForUpdateDto, question);
             await _repository.SaveAsync();
         }
 
-        private async Task<TrueAndFalseQuestion> getTrueAndFalseQuestionAndCheckIfItExistAsync(Guid id, bool trackChanges)
+        private async Task<TrueAndFalseQuestion> GetTrueAndFalseQuestionAndCheckIfItExistAsync(Guid id)
         {
-            TrueAndFalseQuestion question = await _repository.TrueAndFalseQuestionRepository.GetTrueAndFalseQuestionByIdAsync(id, trackChanges) ?? throw new Exception();
+            bool isExists = await _repository.TrueAndFalseQuestionRepository.CheckIfItExistsByIdAsync(id);
+            var question = isExists ? new TrueAndFalseQuestion { Id = id } : throw new Exception();
+            return question;
+        }
+        private async Task<TrueAndFalseQuestion> GetTrueAndFalseQuestionAndCheckIfItExistAsync(Guid id, bool trackChanges = false)
+        {
+            var question = await _repository.TrueAndFalseQuestionRepository.GetTrueAndFalseQuestionByIdAsync(id, trackChanges) ?? throw new Exception();
             return question;
         }
     }

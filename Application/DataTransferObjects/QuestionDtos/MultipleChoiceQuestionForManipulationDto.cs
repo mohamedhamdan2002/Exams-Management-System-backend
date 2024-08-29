@@ -6,7 +6,7 @@
         public string OptionB { get; init; }
         public string OptionC { get; init; }
         public string OptionD { get; init; }
-        public char CorrectChoice { get; init; }
+        public string CorrectChoice { get; init; }
     }
 
 

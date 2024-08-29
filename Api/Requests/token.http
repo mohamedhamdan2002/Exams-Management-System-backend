@@ -1,0 +1,10 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+
+@host = http://localhost:5123/api
+POST {{host}}/token/refresh
+Content-Type: application/json
+
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxYzA2YTBhZC03ZmYzLTRmY2ItOTIwNy0yYTI3OTFjZjVkYWEiLCJleHAiOjE3MDk0OTYyOTgsImlzcyI6ImV4YW0tb25MaW5lLXN5c3RlbSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTEyMy9hcGkifQ.hIgJ2hDkynp_2AqvjGL_FSX9kkcqgg2Fi18xor1LGcw",
+  "refreshToken": "tkj2lDMc3qDOjjJFVpaPSMhq2b2T5kuIw27W43TC8WU="
+}

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231227122858_fixLengthOfTitleColumn")]
-    partial class fixLengthOfTitleColumn
+    [Migration("20240113191136_inital")]
+    partial class inital
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,7 +47,7 @@ namespace Domain.Migrations
 
                     b.HasIndex("QuestionId");
 
-                    b.ToTable("Answer");
+                    b.ToTable("Answers");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Answer");
 
@@ -105,8 +105,8 @@ namespace Domain.Migrations
                         .HasColumnType("VARCHAR");
 
                     b.Property<decimal>("TotalMarks")
-                        .HasPrecision(3, 3)
-                        .HasColumnType("decimal(3,3)");
+                        .HasPrecision(6, 3)
+                        .HasColumnType("decimal(6,3)");
 
                     b.HasKey("Id");
 
@@ -173,6 +173,7 @@ namespace Domain.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
+                        .HasMaxLength(500)
                         .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");
@@ -203,7 +204,7 @@ namespace Domain.Migrations
                     b.HasDiscriminator().HasValue("ChoiceAnswer");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Models.MultipleChocieQuestion", b =>
+            modelBuilder.Entity("Domain.Entities.Models.MultipleChoiceQuestion", b =>
                 {
                     b.HasBaseType("Domain.Entities.Models.Question");
 
@@ -227,7 +228,7 @@ namespace Domain.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("MultipleChocieQuestions");
+                    b.ToTable("MultipleChoiceQuestions", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Models.TrueAndFalseQuestion", b =>
@@ -237,7 +238,7 @@ namespace Domain.Migrations
                     b.Property<bool>("CorrectAnswer")
                         .HasColumnType("bit");
 
-                    b.ToTable("TrueAndFalseQuestions");
+                    b.ToTable("TrueAndFalseQuestions", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Models.Answer", b =>

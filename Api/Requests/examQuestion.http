@@ -1,0 +1,20 @@
+# @host = https://localhost:7076/api
+@host = http://localhost:5123/api
+@examId = 1d296048-871c-410b-cb94-08dc1b2ad555
+
+GET {{host}}/exam/{{examId}}/questions/
+###
+POST {{host}}/exam/{{examId}}/questions/
+Content-Type: application/json
+
+[
+  {
+    "value": "254BDFE8-49FC-489F-4558-08DC07A1C3E4"
+  }
+]
+
+
+
+
+
+

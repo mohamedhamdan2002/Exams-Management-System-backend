@@ -10,6 +10,4 @@ namespace Application.Services.Contracts
         Task UpdateTrueAndFalseQuestionAsync(Guid id, TrueAndFalseQuestionForUpdateDto questionForUpdateDto, bool trackChanges = false);
         Task DeleteTrueAndFalseQuestionAsync(Guid id, bool trackChanges = false);
     }
-
-
 }

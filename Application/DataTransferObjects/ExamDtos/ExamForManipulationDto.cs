@@ -15,6 +15,8 @@ namespace Application.DataTransferObjects.ExamDtos
         public decimal TotalMarks { get; init; }
         public TermEnum Term { get; init; }
         public LevelEnum Level { get; init; }
+        public List<Guid>? Questions { get; init; }
+
     }
 
 }

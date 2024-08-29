@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Domain.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialDatabaseDesign : Migration
+    public partial class inital : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -25,11 +25,11 @@ namespace Domain.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MultipleChocieQuestions",
+                name: "MultipleChoiceQuestions",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "VARCHAR", nullable: false),
+                    Title = table.Column<string>(type: "VARCHAR(500)", maxLength: 500, nullable: false),
                     Difficulty = table.Column<string>(type: "VARCHAR(10)", maxLength: 10, nullable: false),
                     Mark = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     OptionA = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -40,7 +40,7 @@ namespace Domain.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MultipleChocieQuestions", x => x.Id);
+                    table.PrimaryKey("PK_MultipleChoiceQuestions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -48,7 +48,7 @@ namespace Domain.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "VARCHAR", nullable: false),
+                    Title = table.Column<string>(type: "VARCHAR(500)", maxLength: 500, nullable: false),
                     Difficulty = table.Column<string>(type: "VARCHAR(10)", maxLength: 10, nullable: false),
                     Mark = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CorrectAnswer = table.Column<bool>(type: "bit", nullable: false)
@@ -63,10 +63,10 @@ namespace Domain.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "VARCHAR", nullable: false),
+                    Title = table.Column<string>(type: "VARCHAR(500)", maxLength: 500, nullable: false),
                     Duration = table.Column<TimeSpan>(type: "time", nullable: false),
                     Date = table.Column<DateTime>(type: "date", nullable: false),
-                    TotalMarks = table.Column<decimal>(type: "decimal(3,3)", precision: 3, scale: 3, nullable: false),
+                    TotalMarks = table.Column<decimal>(type: "decimal(6,3)", precision: 6, scale: 3, nullable: false),
                     Term = table.Column<string>(type: "VARCHAR(10)", maxLength: 10, nullable: false),
                     Level = table.Column<string>(type: "VARCHAR(10)", maxLength: 10, nullable: false),
                     CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
@@ -122,7 +122,7 @@ namespace Domain.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Answer",
+                name: "Answers",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -134,22 +134,22 @@ namespace Domain.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Answer", x => x.Id);
+                    table.PrimaryKey("PK_Answers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Answer_ExamSolutions_ExamSolutionId",
+                        name: "FK_Answers_ExamSolutions_ExamSolutionId",
                         column: x => x.ExamSolutionId,
                         principalTable: "ExamSolutions",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Answer_ExamSolutionId",
-                table: "Answer",
+                name: "IX_Answers_ExamSolutionId",
+                table: "Answers",
                 column: "ExamSolutionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Answer_QuestionId",
-                table: "Answer",
+                name: "IX_Answers_QuestionId",
+                table: "Answers",
                 column: "QuestionId");
 
             migrationBuilder.CreateIndex(
@@ -172,13 +172,13 @@ namespace Domain.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Answer");
+                name: "Answers");
 
             migrationBuilder.DropTable(
                 name: "ExamQuestion");
 
             migrationBuilder.DropTable(
-                name: "MultipleChocieQuestions");
+                name: "MultipleChoiceQuestions");
 
             migrationBuilder.DropTable(
                 name: "TrueAndFalseQuestions");

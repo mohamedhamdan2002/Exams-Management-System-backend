@@ -6,18 +6,19 @@ namespace Application.DataTransferObjects.QuestionDtos
     {
         public bool CorrectAnswer { get; init; }
 
-        public static TrueAndFalseQuestionDto ToTrueAndFalseQuestionDto(TrueAndFalseQuestion enity)
+        public static TrueAndFalseQuestionDto ToTrueAndFalseQuestionDto(Question enity)
         {
+            var trueAndFalseQuestion = enity as TrueAndFalseQuestion;
             return new TrueAndFalseQuestionDto
             {
-                Id = enity.Id,
-                Title = enity.Title,
-                Difficulty = enity.Difficulty,
-                Mark = enity.Mark,
-                CorrectAnswer = enity.CorrectAnswer
+                Id = trueAndFalseQuestion!.Id,
+                Title = trueAndFalseQuestion.Title,
+                Difficulty = trueAndFalseQuestion.Difficulty,
+                Mark = trueAndFalseQuestion.Mark,
+                CorrectAnswer = trueAndFalseQuestion.CorrectAnswer
             };
         }
-        public static IEnumerable<TrueAndFalseQuestionDto> ToListOfTrueAndFalseQuestionsDto(IEnumerable<TrueAndFalseQuestion> questions)
+        public static IEnumerable<TrueAndFalseQuestionDto> ToListOfTrueAndFalseQuestionsDto(IEnumerable<Question> questions)
         {
             return questions.Select(question => ToTrueAndFalseQuestionDto(question));
         }

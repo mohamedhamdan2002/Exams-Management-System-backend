@@ -1,5 +1,6 @@
-﻿using Application.DataTransferObjects.CategoryDtos;
-using Application.DataTransferObjects.ExamDtos;
+﻿// Ignore Spelling: Dto
+
+using Application.DataTransferObjects.CategoryDtos;
 using Application.Services.Contracts;
 using Domain.Entities.Models;
 using Domain.Repositories.Contracts;
@@ -12,17 +13,17 @@ namespace Application.Services
 
         public async Task<CategoryDto> CreateCategoryAsync(CategoryForCreationDto categoryForCreationDto)
         {
-            Category newCageoryEntity = CategoryForCreationDto.ToCategory(categoryForCreationDto);
-            _repository.CategoryRepository.CreateCategory(newCageoryEntity);
+            Category newCategoryEntity = CategoryForCreationDto.ToCategory(categoryForCreationDto);
+            _repository.CategoryRepository.CreateCategory(newCategoryEntity);
             await _repository.SaveAsync();
-            CategoryDto categoryDtoToReturn = CategoryDto.ToCategoryDto(newCageoryEntity);
+            CategoryDto categoryDtoToReturn = CategoryDto.ToCategoryDto(newCategoryEntity);
             return categoryDtoToReturn;
         }
 
         public async Task DeleteCategoryAsync(Guid id, bool trackChanges = false)
         {
-            Category cateogryToDelete = await getCategoryAndCheckIfItExitsAsync(id, trackChanges);
-            _repository.CategoryRepository.DeleteCategory(cateogryToDelete);
+            Category categoryToDelete = await getCategoryAndCheckIfItExitsAsync(id, trackChanges);
+            _repository.CategoryRepository.DeleteCategory(categoryToDelete);
             await _repository.SaveAsync();
         }
 
@@ -33,14 +34,14 @@ namespace Application.Services
             return CategoryDto.ToListOfCategoriesDto(categories);
         }
 
-        public async Task<CategoryDto> GetCategoryByIdAsync(Guid id, bool trackChanges = false, params string[] includeProperites)
+        public async Task<CategoryDto> GetCategoryByIdAsync(Guid id, bool trackChanges = false, params string[] includeProperties)
         {
             Category categoryEntity = await getCategoryAndCheckIfItExitsAsync(id, trackChanges);
             CategoryDto categoryDtoToReturn = CategoryDto.ToCategoryDto(categoryEntity);
             return categoryDtoToReturn;
         }
 
-        public async Task UpdageCategoryAsync(Guid id, CategoryForUpdateDto categoryForUpdateDto, bool trackChanges = false)
+        public async Task UpdateCategoryAsync(Guid id, CategoryForUpdateDto categoryForUpdateDto, bool trackChanges = false)
         {
             Category categoryEntity = await getCategoryAndCheckIfItExitsAsync(id, trackChanges);
             CategoryForUpdateDto.UpdateCategory(categoryForUpdateDto, categoryEntity);
@@ -49,7 +50,7 @@ namespace Application.Services
         private async Task<Category> getCategoryAndCheckIfItExitsAsync(Guid id, bool trackChanges = false)
         {
             Category? category = await _repository.CategoryRepository.GetCategoryByIdAsync(id, trackChanges);
-            if(category == null)
+            if (category == null)
             {
                 throw new Exception();
             }

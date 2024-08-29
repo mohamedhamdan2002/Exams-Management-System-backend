@@ -9,23 +9,24 @@ namespace Application.DataTransferObjects.QuestionDtos
         public string OptionC { get; init; }
         public string OptionD { get; init; }
 
-        public char CorrectChoice { get; init; }
-        public static MultipleChoiceQuestionDto ToMultipleChoiceQuestionDto(MultipleChoiceQuestion enity)
+        public string CorrectChoice { get; init; }
+        public static MultipleChoiceQuestionDto ToMultipleChoiceQuestionDto(Question enity)
         {
+            var multipleChoiceQuestion = enity as MultipleChoiceQuestion;
             return new MultipleChoiceQuestionDto
             {
-                Id = enity.Id,
-                Title = enity.Title,
-                Difficulty = enity.Difficulty,
-                Mark = enity.Mark,
-                OptionA = enity.OptionA,
-                OptionB = enity.OptionB,
-                OptionC = enity.OptionC,
-                OptionD = enity.OptionD,
-                CorrectChoice = enity.CorrectChoice,
+                Id = multipleChoiceQuestion!.Id,
+                Title = multipleChoiceQuestion.Title,
+                Difficulty = multipleChoiceQuestion.Difficulty,
+                Mark = multipleChoiceQuestion.Mark,
+                OptionA = multipleChoiceQuestion.OptionA,
+                OptionB = multipleChoiceQuestion.OptionB,
+                OptionC = multipleChoiceQuestion.OptionC,
+                OptionD = multipleChoiceQuestion.OptionD,
+                CorrectChoice = multipleChoiceQuestion.CorrectChoice,
             };
         }
-        public static IEnumerable<MultipleChoiceQuestionDto> ToListOfMultiplChoicQuestionsDto(IEnumerable<MultipleChoiceQuestion> questions)
+        public static IEnumerable<MultipleChoiceQuestionDto> ToListOfMultiplChoicQuestionsDto(IEnumerable<Question> questions)
         {
             return questions.Select(question => ToMultipleChoiceQuestionDto(question));
         }

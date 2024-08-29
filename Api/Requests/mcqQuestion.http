@@ -1,0 +1,37 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+# @host = https://localhost:7076/api
+@host = http://localhost:5123/api
+@MquestionId = 254bdfe8-49fc-489f-4558-08dc07a1c3e4
+###
+GET {{host}}/multiplechoicequestions/
+###
+POST {{host}}/multiplechoicequestions/
+Content-Type: application/json
+
+{
+  "title": "what is the first letter in mohamed?",
+  "difficulty": 2,
+  "mark": 10,
+  "optionA": "m",
+  "optionB": "M",
+  "optionC": "Cs",
+  "optionD": "sh",
+  "correctChoice": "A"
+}
+###
+PUT {{host}}/multiplechoicequestions/{{MquestionId}}
+Content-Type: application/json
+
+{
+  "title": "what is the first letter in mohamed?",
+  "difficulty": 2,
+  "mark": 10,
+  "optionA": "m",
+  "optionB": "M",
+  "optionC": "Cs",
+  "optionD": "sh",
+  "correctChoice": "A"
+}
+###
+GET {{host}}/multiplechoicequestions/{{MquestionId}}/
